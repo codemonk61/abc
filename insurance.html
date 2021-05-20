@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>stepwizard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style >
+            body{ 
+                margin-top:40px; 
+                background: lavender;
+            }
+
+            .stepwizard-step p {
+                margin-top: 10px;
+            }
+
+            .stepwizard-row {
+                display: table-row;
+            }
+
+            .stepwizard {
+                display: table;
+                width: 100%;
+                position: relative;
+            }
+
+            .stepwizard-step button[disabled] {
+                opacity: 1 !important;
+                filter: alpha(opacity=100) !important;
+            }
+
+            .stepwizard-row:before {
+                top: 14px;
+                bottom: 0;
+                position: absolute;
+                content: " ";
+                width: 100%;
+                height: 1px;
+                background-color: #ccc;
+                z-order: 0;
+
+            }
+
+            .stepwizard-step {
+                display: table-cell;
+                text-align: center;
+                position: relative;
+            }
+
+            .btn-circle {
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                padding: 6px 0;
+                font-size: 12px;
+                line-height: 1.428571429;
+                border-radius: 15px;
+            }
+            .input{
+                margin-left:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="#">
+        <div class="container">
+            <div class="row" style="height: 100px;" >
+                <div class="col-lg-12">
+                    <h3 style="font-weight: 600; text-align: center ;padding-top: 50px;">Accident Management  Quotation Form</h3>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="stepwizard">
+                <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                        <p>Personal Info</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                        <p>Other Driver Info</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                        <p>Contact Info</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                        <p>Additional Info</p>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <br>
+            <div class="row setup-content" id="step-1">
+                <div class="col-xs-12">
+                    <div class="col-xl-12">
+                        <div class="form-group row">
+
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="contactReason" class="col-sm-6 col-form-label control-label">How did you hear about us?</label>
+                            <div class="col-sm-6">
+                                <select name="contactReason" id="contactReason" class="form-control fieldwidth" onchange="represent(this.value)">
+                                    <option value="" selected>----</option>
+                                    <option value="Walk In">Walk In</option>
+                                    <option value="Word Of Mouth">Word Of Mouth</option>
+                                    <option value="Leaflet">Leaflet</option>
+                                    <option value="Existing Customer">Existing Customer</option>
+                                    <option value="Friend or Family">Friend or Family</option>
+                                    <option value="Email/Newsletter">Email/Newsletter</option>
+                                    <option value="T.V Advertisement">T.V Advertisement</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="refferName" class="col-sm-6 col-form-label control-label">If by a friend, family or referrer please state their name</label>
+                            <div class="col-sm-6">
+                                <input name="refferName" type="text" id="refferName" class="form-control fieldwidth">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="insuranceDecline" class="col-sm-6 col-form-label control-label" >Have you or any of the drivers ever had insurance declined, cancelled or special terms imposed?<span style="color: red;">*</span></label>
+                            <div class="col-sm-6">
+                                <select name="insuranceDecline" id="insuranceDecline" class="form-control fieldwidth" required onchange="prevInsure(this.value)">
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group row">
+                            <p style="text-align: center">"Registered with the ICO, all your personal information is protected under the Data Protection Act 2018"</p>
+                        </div>
+
+                        <div class="form-group row" style="border-bottom:1px solid black">
+                            <h3 style="font-weight: 600">Personal Information</h3>
+                    
+                        </div>
+
+                        <div class="form-group row " >
+                            <label for="title" class="col-sm-6 col-form-label control-label">Title <span style="color: red;">*</span>:</label>
+                            <div class="col-sm-6">
+                                <select name="title" id="title" class="form-control fieldwidth" required>
+                                    <option value="" selected>----</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Mrs">Mrs</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label for="firstName" class="col-sm-6 col-form-label control-label">First Name<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="firstName" type="text" id="firstName" value="" class="form-control fieldwidth" placeholder="Enter First Name" required value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-sm-6 col-form-label control-label">Surname (Including any mie names)<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="lastName" type="text" id="lastName" value="" class="form-control fieldwidth" placeholder="Enter Last Name" data-error="Enter your Lastname" required value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label for="Dob" class="col-sm-6 col-form-label control-label">Date Of Birth <span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="Dob" type="text" id="Dob" value="" class="form-control fieldwidth datePick" required value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="houseNo" class="col-sm-6 col-form-label control-label">House Name / Number<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="houseNo" type="text" id="houseNo" required value="" class="form-control fieldwidth" placeholder="Enter House Name / Number">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label for="address" class="col-sm-6 col-form-label control-label">First Line of Address<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="address" type="text" id="address" required value="" class="form-control fieldwidth" placeholder="Enter Address">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label for="postCode" class="col-sm-6 col-form-label control-label">Postcode<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="postCode" type="text" id="postCode" required value="" class="form-control fieldwidth" placeholder="Enter Post-Code">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="maritStatus" class="col-sm-6 col-form-label control-label">Marital Status <span style="color: red;">*</span>:</label>
+                            <div class="col-sm-6">
+                                <select name="maritStatus" id="maritStatus" class="form-control fieldwidth" required value="">
+                                    <option value="" selected>----</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Living With Partner">Living With Partner</option>
+                                    <option value="Civil Partner">Civil Partner</option>
+                                    <option value="Divorced">Divorced</option>
+                                    <option value="Separated">Separated</option>
+                                    <option value="Widowed">Widowed</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label for="employeeStatus" class="col-sm-6 col-form-label control-label">Employment Status <span style="color: red;">*</span>:</label>
+                            <div class="col-sm-6">
+                                <select name="employeeStatus" id="employeeStatus" class="form-control fieldwidth" required>
+                                    <option value="" selected>----</option>
+                                    <option value="Employed">Employed</option>
+                                    <option value="Unemployed">Unemployed</option>
+                                    <option value="Self-Employed">Self-Employed</option>
+                                    <option value="House Person">House Person</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="Not employed due to illness/disability">Not employed due to illness/disability</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">If Employed/Self Employed, What is your occupation:</label>
+                            <div class="col-sm-6">
+                                <input name="ifSelfEmployedOccu" type="text" id="ifSelfEmployedOccu" class="form-control fieldwidth" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">If Employed/Self Employed, What is your Business:</label>
+                            <div class="col-sm-6">
+                                <input name="ifSelfEmployedBusiness" type="text" id="ifSelfEmployedBusiness" class="form-control fieldwidth" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-6">
+                                Homeowner <span style="color: red;">*</span>
+                            </label>
+                            <div class="col-sm-6">
+                                <select name="isHomeOwner" id="isHomeOwner" class="form-control fieldwidth" required>
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-6">
+                                Any Child Under 16 <span style="color: red;">*</span>
+                            </label>
+                            <div class="col-sm-6">
+                                <select name="childU16" id="childU16" class="form-control fieldwidth" required>
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="border-bottom:1px solid black">
+                            <h3 style="font-weight: 600">Contact Information</h3>
+                          
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Email <span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="email" type="text" id="email" class="form-control fieldwidth" required value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Mobile<span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="mobile" type="text" id="mobile" class="form-control fieldwidth" placeholder="+44XXXXXXXXXX" onkeyup="numberOnly(this)" required value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Telephone :</label>
+                            <div class="col-sm-6">
+                                <input name="phone" type="text" id="phone" class="form-control fieldwidth" placeholder="Telephone Number" value="" onkeyup="numberOnly(this)">
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Please Contact Me Via :</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input id="chkEmail" type="radio" name="contactVia" value="Email" checked="checked"><label for="chkEmail">Email</label>
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="chkPhone" type="radio" name="contactVia" value="Phone"><label for="chkPhone">Phone</label>
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="chkText" type="radio" name="contactVia" value="Text"><label for="chkText">Text</label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="stepmsg"></div>
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:right">Next</button>
+                    </div>
+                </div>
+            </div> 
+            <!--end of step-1-->
+
+            <div class="row setup-content" id="step-2">
+                <div class="col-12">
+                    <div class="col-md-8">
+                        <div class="form-group row" style="padding-top: 10px;">
+                            <h3 style="font-weight: 600">Other Driver's Information</h3>
+
+                        </div>
+                        <hr style="border-top: 1px solid #131212;">
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label control-label">Other Driver's Full Name <span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="licenceObtainDate" type="text" id="licenceObtainDate" class="form-control fieldwidth datePickPast" value="" placeholder="Driver's Full Name">
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Other Driver's Vehicle Registration <span style="color: red;">* </span>:</label>
+                            <div class="col-sm-6">
+                                <input name="licenceNo" type="text" id="licenceNo" class="form-control fieldwidth" placeholder="Driver's Vehicle Registration " value="">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Other Driver's Address(If Known) :</label>
+                            <div class="col-sm-6">
+                                <input name="licenceNo" type="text" id="licenceNo" class="form-control fieldwidth" placeholder="Driver's Address" value="">
+
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Other Driver's Contact Number(If Known) :</label>
+                            <div class="col-sm-6">
+                                <input name="licenceNo" type="text" id="licenceNo" class="form-control fieldwidth" placeholder="Driver's Contact" value="">
+
+                            </div>
+                        </div>
+                        <button class="btn btn-primary prevBtn btn-lg pull-left" type="button">Previous</button>
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:right">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--end of step-2-->
+            <div class="row setup-content" id="step-3">
+                <div class="col-12">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            <h3 style="font-weight: 600">Contact Information</h3>
+
+                        </div>
+                        <hr style="border-top: 1px solid #131212;">
+
+                        <div class="form-group row ">
+                            <label class="col-sm-6 col-form-label control-label">Was a valid insurance policy in force at the time of accident?<span style="color: red;">* </span></label>
+                            <div class="col-sm-6">
+                                <select name="wasForcedByPolicy" id="wasForcedByPolicy" class="form-control fieldwidth" required>
+                                    <option value="" selected>----</option>
+                                    <option value="Yes" class="dropdown-item">Yes</option>
+                                    <option value="No" class="dropdown-item">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label control-label">Date of Incident :</label>
+                            <div class="col-sm-6">
+                                <input name="incidentDate" type="text" id="incidentDate" class="form-control fieldwidth datePickPast" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label control-label">Approximate time of the incident (24hr time) :</label>
+                            <div class="col-sm-6">
+                                <input name="incidentTime" type="time" id="incidentTime" class="form-control fieldwidth" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label control-label">Location of Incident :</label>
+                            <div class="col-sm-6">
+                                <input name="location" type="text" id="location" class="form-control fieldwidth" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label control-label">Weather Condition? (Optional) :</label>
+                            <div class="col-sm-6">
+                                <select name="weather" id="weather" class="form-control fieldwidth">
+                                    <option value="" selected>----</option>
+                                    <option value="Clear" class="dropdown-item">Clear</option>
+                                    <option value="Dry" class="dropdown-item">Dry</option>
+                                    <option value="Sunny" class="dropdown-item">Sunny</option>
+                                    <option value="Wet" class="dropdown-item">Wet</option>
+                                    <option value="Rainy" class="dropdown-item">Rainy</option>
+                                    <option value="Icy" class="dropdown-item">Icy</option>
+                                    <option value="Snowy" class="dropdown-item">Snowy</option>
+                                    <option value="Fog" class="dropdown-item">Fog</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="stepmsg"></div>
+                        <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" style="margin-right: 400px;">Previous</button>
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
+                    </div>
+                </div>
+            </div>	
+            <!--end of step-3-->
+
+            <div class="row setup-content" id="step-4">
+                <div class="col-xs-12">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <h3 style="font-weight: 600">Addtional Information</h3>
+
+                        </div>
+                        <hr style="border-top: 1px solid #131212;">
+
+
+                        <div class=" form-group row">
+                            <label for=" isMotorAccidented" class="col-sm-6 col-form-label control-label" >Do you have any witness details?:</label>
+                            <div class="col-sm-6">
+                                <select name="isMotorAccidented" id="isMotorAccidented" class="form-control fieldwidth" required onchange="fieldAppearanceClaim(this.value);">
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+
+                                </select>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class=" form-group row">
+                            <label for=" isMotorAccidented" class="col-sm-6 col-form-label control-label" >Did any passenger sustain injury?:</label>
+                            <div class="col-sm-6">
+                                <select name="isMotorAccidented" id="isMotorAccidented" class="form-control fieldwidth" required onchange="fieldAppearanceClaim(this.value);">
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+
+                                </select>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class=" form-group row">
+                            <label for=" isMotorAccidented" class="col-sm-6 col-form-label control-label" >Do you give me the consent to agree to our 'Terms & Conditions' on your behalf however, i will send you that to you in an hour with a link by text or email? (Office Use Only)<span style="color: red;">*</span>:</label>
+                            <div class="col-sm-6">
+                                <select name="isMotorAccidented" id="isMotorAccidented" class="form-control fieldwidth" required onchange="fieldAppearanceClaim(this.value);">
+                                    <option value="" selected>----</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+
+                                </select>
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="form-group row" style="margin-top: 27px;">
+                            <label>
+                                <span style="margin: 5px">
+                                    <input id="chkTermsAgree" type="checkbox" >
+                                </span>I Agree <a href="#" target="_blank">Terms &amp; Conditions</a>&nbsp; and&nbsp;
+                                <a href="#" target="_blank">Privacy Policy</a>
+                            </label>
+                        </div>
+
+                        <div class="form-group row">
+                            <p style="text-align: center">
+                                By clicking submit, you agree your explicit consent for us to use the data provided in accordance with the Data Protection
+                                act 2018, this data will be used to provide the cheapest possible quote while being shared with both offline and online markets.
+                            </p>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="stepmsg"></div>
+                        <button class="btn btn-primary prevBtn btn-lg pull-left" type="button">Previous</button>
+                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:right">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--end of step-4-->
+      
+    </div>
+              </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script >
+        $(document).ready(function () {
+
+            var navListItems = $('div.setup-panel div a'),
+                    allWells = $('.setup-content'),
+                    allNextBtn = $('.nextBtn'),
+                    allPrevBtn = $('.prevBtn');
+
+            allWells.hide();
+
+            navListItems.click(function (e) {
+                e.preventDefault();
+                var $target = $($(this).attr('href')),
+                        $item = $(this);
+
+                if (!$item.hasClass('disabled')) {
+                    navListItems.removeClass('btn-primary').addClass('btn-default');
+                    $item.addClass('btn-primary');
+                    allWells.hide();
+                    $target.show();
+                    $target.find('input:eq(0)').focus();
+                }
+            });
+
+            allNextBtn.click(function () {
+                var curStep = $(this).closest(".setup-content"),
+                        curStepBtn = curStep.attr("id"),
+                        nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                        curInputs = curStep.find("input[type='text'],input[type='url']"),
+                        isValid = true;
+
+                $(".form-group").removeClass("has-error");
+                for (var i = 0; i < curInputs.length; i++) {
+                    if (!curInputs[i].validity.valid) {
+                        isValid = false;
+                        $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    }
+                }
+
+                if (isValid)
+                    nextStepWizard.removeAttr('disabled').trigger('click');
+            });
+
+            allPrevBtn.click(function () {
+                var curStep = $(this).closest(".setup-content"),
+                        curStepBtn = curStep.attr("id"),
+                        prevStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+                $(".form-group").removeClass("has-error");
+                prevStepWizard.removeAttr('disabled').trigger('click');
+            });
+
+            $('div.setup-panel div a.btn-primary').trigger('click');
+        });
+    </script>
+</body>
+</html>
